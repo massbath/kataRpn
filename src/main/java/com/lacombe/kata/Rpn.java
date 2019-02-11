@@ -5,7 +5,7 @@ public class Rpn {
 
     private static final String PLUS_OPERATOR = "+";
     private static final String SEPARATOR = " ";
-    private static final String REGEX = "[0-9]+ [0-9]+ [+-]";
+    private static final String REGEX = "[-]?[0-9]+ [-]?[0-9]+ [+-]";
 
 
     public static String calculate(String input) {
