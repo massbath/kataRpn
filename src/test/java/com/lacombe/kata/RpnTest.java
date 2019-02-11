@@ -37,12 +37,15 @@ public class RpnTest {
     }
 
     @Test
-    public void given_multiple_simple_numbers_with_divisor_operator_should_return_the_division_of_simple_numbers() {
-        assertThat(Rpn.calculate("4 2 /")).isEqualTo(Rpn.calculate("2"));
+    @Parameters({"4 2 /,2",
+            "10 20 /,0"
+    })
+    public void given_multiple_simple_numbers_with_divisor_operator_should_return_the_division_of_simple_numbers(String expression, String resultExpected) {
+        assertThat(Rpn.calculate(expression)).isEqualTo(resultExpected);
     }
 
     @Test
-    public void given_multiple_simpl_numbers_with_divisor_operator_should_return_the_division_of_simple_numbers() {
+    public void given_simple_numbers_with_impossible_divisor_operator_should_return_the_division_of_simple_numbers() {
         assertThat(Rpn.calculate("4 0 /")).isEqualTo(Rpn.calculate("4 0 /"));
     }
 
