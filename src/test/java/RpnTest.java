@@ -29,13 +29,14 @@ public class RpnTest {
     })
     public void given_multiple_simple_numbers_with_plus_operator_should_return_the_sum_of_simple_numbers(String input, String expected) {
         Rpn rpn = new Rpn(input);
-        assertThat(expected).isEqualTo(rpn.calculate());
+        assertThat(rpn.calculate()).isEqualTo(expected);
     }
 
 
     @Test
-    public void given_multiple_simple_numbers_with_minus_operator_should_return_the_sum_of_simple_numbers() {
+    public void given_multiple_simple_numbers_with_minus_operator_should_return_the_substract_of_simple_numbers() {
         Rpn rpn = new Rpn("2 1 -");
+
         assertThat("1").isEqualTo(rpn.calculate());
     }
 }
