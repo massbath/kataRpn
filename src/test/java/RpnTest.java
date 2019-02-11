@@ -1,8 +1,12 @@
 import com.lacombe.kata.Rpn;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class RpnTest {
 
     @Test
@@ -18,14 +22,20 @@ public class RpnTest {
     }
 
     @Test
-    public void given_multiple_simple_numbers_with_plus_operator_should_return_the_sum_of_simple_numbers() {
-        Rpn rpn = new Rpn("1 2 +");
-        assertThat("3").isEqualTo(rpn.calculate());
+    @Parameters({"1 2 +, 3",
+            "1 3 +, 4",
+            "1 5 +, 6",
+            "2 2 +, 4"
+    })
+    public void given_multiple_simple_numbers_with_plus_operator_should_return_the_sum_of_simple_numbers(String input, String expected) {
+        Rpn rpn = new Rpn(input);
+        assertThat(expected).isEqualTo(rpn.calculate());
+    }
 
-        rpn = new Rpn("1 3 +");
-        assertThat("4").isEqualTo(rpn.calculate());
 
-        rpn = new Rpn("1 5 +");
-        assertThat("6").isEqualTo(rpn.calculate());
+    @Test
+    public void given_multiple_simple_numbers_with_minus_operator_should_return_the_sum_of_simple_numbers() {
+        Rpn rpn = new Rpn("2 1 -");
+        assertThat("1").isEqualTo(rpn.calculate());
     }
 }
