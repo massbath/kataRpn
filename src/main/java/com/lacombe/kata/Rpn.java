@@ -26,17 +26,19 @@ public class Rpn {
         Integer firstOperand = Integer.valueOf(tmp[FIRST_OPERAND_INDEX]);
         Integer secondOperand = Integer.valueOf(tmp[SECOND_OPERAND_INDEX]);
         String operator = tmp[OPERATOR_INDEX];
-        if (!Check.isValidOperation(firstOperand, secondOperand, operator))
+
+        Operation operation = new Operation(firstOperand, secondOperand, operator);
+        if (!Check.isValidOperation(operation))
             return input;
-        int result = doCalculation(firstOperand, secondOperand, operator);
+        int result = doCalculation(operation);
         return String.valueOf(result);
 
 
     }
 
-    private static int doCalculation(Integer firstOperand, Integer secondOperand, String operator) {
-        Operator operatorEnum = fromValue(operator).get();
-        return operatorEnum.operate.apply(firstOperand, secondOperand);
+    private static int doCalculation(Operation operation) {
+        Operator operatorEnum = fromValue(operation.getOperator()).get();
+        return operatorEnum.operate.apply(operation.getFirstOperand(), operation.getSecondOperand());
     }
 
     private static boolean isValidInput(String input) {
