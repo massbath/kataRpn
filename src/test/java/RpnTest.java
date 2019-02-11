@@ -11,5 +11,11 @@ public class RpnTest {
         assertThat("1").isEqualTo(rpn.calcultate());
     }
 
+    @Test
+    public void given_multiple_simple_numbers_with_white_space_separator_should_return_the_expression() {
+        Rpn rpn = new Rpn("1 2");
+        assertThat("1 2").isEqualTo(rpn.calcultate());
+    }
+
 
 }
