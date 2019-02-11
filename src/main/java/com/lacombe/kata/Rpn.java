@@ -10,7 +10,16 @@ public class Rpn {
         this.input = input;
     }
 
-    public String calcultate() {
+    public String calculate() {
+
+        String[] tmp = input.split(" ");
+
+
+        if (tmp.length == 3) {
+            return String.valueOf(Integer.valueOf(tmp[0]) + Integer.valueOf(tmp[1]));
+        }
+
+
         return input;
     }
 }
