@@ -33,6 +33,18 @@ public class RpnTest {
 
     @Test
     public void given_multiple_simple_numbers_with_minus_operator_should_return_the_substract_of_simple_numbers() {
-        assertThat("1").isEqualTo(Rpn.calculate("2 1 -"));
+        assertThat(Rpn.calculate("2 1 -")).isEqualTo(Rpn.calculate("1"));
     }
+
+    @Test
+    public void given_multiple_simple_numbers_with_divisor_operator_should_return_the_division_of_simple_numbers() {
+        assertThat(Rpn.calculate("4 2 /")).isEqualTo(Rpn.calculate("2"));
+    }
+
+    @Test
+    public void given_multiple_simpl_numbers_with_divisor_operator_should_return_the_division_of_simple_numbers() {
+        assertThat(Rpn.calculate("4 0 /")).isEqualTo(Rpn.calculate("4 0 /"));
+    }
+
+
 }
