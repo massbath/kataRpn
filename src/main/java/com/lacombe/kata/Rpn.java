@@ -3,17 +3,12 @@ package com.lacombe.kata;
 public class Rpn {
 
 
-    public static final String PLUS_OPERATOR = "+";
-    public static final String SEPARATOR = " ";
+    private static final String PLUS_OPERATOR = "+";
+    private static final String SEPARATOR = " ";
     private static final String REGEX = "[0-9]+ [0-9]+ [+-]";
-    private final String input;
 
-    public Rpn(String input) {
 
-        this.input = input;
-    }
-
-    public String calculate() {
+    public static String calculate(String input) {
 
 
         if (!isValidInput(input))
@@ -31,7 +26,7 @@ public class Rpn {
 
     }
 
-    private int doCalculation(Integer firstOperand, Integer secondOperand, String operator) {
+    private static int doCalculation(Integer firstOperand, Integer secondOperand, String operator) {
         if (operator.equals(PLUS_OPERATOR))
             return firstOperand + secondOperand;
 
@@ -39,7 +34,7 @@ public class Rpn {
 
     }
 
-    private boolean isValidInput(String input) {
+    private static boolean isValidInput(String input) {
         return input.matches(REGEX);
     }
 }
