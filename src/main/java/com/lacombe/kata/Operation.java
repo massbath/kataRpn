@@ -3,23 +3,58 @@ package com.lacombe.kata;
 public class Operation {
     private final Integer firstOperand;
     private final Integer secondOperand;
-    private final String operator;
+    private final Operator operatorEnum;
 
-    public Operation(Integer firstOperand, Integer secondOperand, String operator) {
+
+    Operation(Integer firstOperand, Integer secondOperand, Operator operator) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
-        this.operator = operator;
+        this.operatorEnum = operator;
     }
 
-    public Integer getFirstOperand() {
+    int doCalculation() {
+        return operatorEnum.operate.apply(getFirstOperand(), getSecondOperand());
+    }
+
+    private Integer getFirstOperand() {
         return firstOperand;
     }
 
-    public Integer getSecondOperand() {
+    Integer getSecondOperand() {
         return secondOperand;
     }
 
-    public String getOperator() {
-        return operator;
+    public Operator getOperator() {
+        return operatorEnum;
+    }
+
+
+    public static class OperationBuilder {
+        private Integer firstOperand;
+        private Integer secondOperand;
+        private Operator operator;
+
+        static OperationBuilder anOperation() {
+            return new OperationBuilder();
+        }
+
+        public OperationBuilder withFirstOperand(Integer firstOperand) {
+            this.firstOperand = firstOperand;
+            return this;
+        }
+
+        public OperationBuilder withSecondOperand(Integer secondOperand) {
+            this.secondOperand = secondOperand;
+            return this;
+        }
+
+        public OperationBuilder withOperator(String operator) {
+            this.operator = Operator.fromValue(operator).get();
+            return this;
+        }
+
+        public Operation build() {
+            return new Operation(firstOperand, secondOperand, operator);
+        }
     }
 }
