@@ -49,5 +49,9 @@ public class RpnTest {
         assertThat(Rpn.calculate("4 0 /")).isEqualTo(Rpn.calculate("4 0 /"));
     }
 
-
+    @Test
+    @Parameters({"120 10 5 + -,105", "5 14 / 5 /,0"})
+    public void given_expression_with_more_operation_should_return_the_result_of_all(String expression, String resultExpected) {
+        assertThat(Rpn.calculate(expression)).isEqualTo(resultExpected);
+    }
 }
