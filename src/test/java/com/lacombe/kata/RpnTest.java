@@ -50,7 +50,11 @@ public class RpnTest {
     }
 
     @Test
-    @Parameters({"120 10 5 + -,105", "5 14 / 5 /,0"})
+    @Parameters({"120 10 5 + -,105",
+            "5 14 / 5 /,0",
+            "10 10 10 + + 20 -,10",
+            "15 7 1 1 + - / 3 +,6"
+    })
     public void given_expression_with_more_operation_should_return_the_result_of_all(String expression, String resultExpected) {
         assertThat(Rpn.calculate(expression)).isEqualTo(resultExpected);
     }
